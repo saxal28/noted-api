@@ -20,6 +20,14 @@ var noteSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now()
+  },
+  category: {
+    type: String,
+    default: "Random"
+  },
+  categories: {
+    type: Array,
+    default: ["Random", "Coding", "Design", "Fitness"]
   }
 })
 

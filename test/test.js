@@ -72,3 +72,19 @@ describe("DELETE /notes/:id", () => {
       .end(done)
   })
 })
+
+describe("GET /notes/sort/:category", () => {
+  it("should get the notes by category", (done) => {
+    var category = testNote.category;
+    request(app)
+      .get(`/notes/sort/${category}`)
+      .expect(200)
+      .end(() => {
+        Note.find({category}).then(note => {
+          expect(note).toExist();
+          expect(note.length).toBe(1);
+          done()
+        }).catch(e => done(e))
+      })
+  })
+})

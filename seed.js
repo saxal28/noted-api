@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const {ObjectID} = require("mongodb");
 
 var notes = [
-  {title: "note 1", _id: new ObjectID},
-  {title: "note 2", _id: new ObjectID}
+  {title: "note 1", _id: new ObjectID, category:"Random"},
+  {title: "note 2", _id: new ObjectID, category:"Random"}
 ]
 
 var testNote = notes[0];

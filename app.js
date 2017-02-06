@@ -11,7 +11,7 @@ const colors = require("colors");
 
 app.use(bodyParser.json());
 
-// Add headers
+// Add coors headers
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -50,11 +50,12 @@ app.post("/notes", (req, res) => {
     author: req.body.author,
     link: req.body.link,
     summary: req.body.summary,
-    body: req.body.body
+    body: req.body.body,
+    category: req.body.category
   })
 
   newNote.save().then(note => {
-    res.send(note)
+    res.send(note);
   }).catch(e => res.status(400).send({}));
 })
 
@@ -70,6 +71,17 @@ app.get("/notes/:id", (req, res) => {
     }
     res.send(note);
   }).catch(e => res.send({e}));
+});
+
+app.get("/notes/sort/:id", (req, res) => {
+  const category = req.params.id;
+
+  Note.find({category}).then(notes => {
+    if(category !== notes[0].category) {
+      return res.status(400).send({err: "Category Not Found/Doesnt Exist"})
+    }
+    res.send(notes);
+  }).catch(e => res.status(404).send({err:"Category Not Found/No Items Exist"}));
 });
 
 app.delete("/notes/:id", (req, res) => {
@@ -92,13 +104,15 @@ app.patch("/notes/:id", (req, res) => {
     return res.status(404).send({err: "ObjectID is not Valid"});
   }
 
-  var body = _.pick(req.body, ["title", "summary", "link", "body"]);
+  var body = _.pick(req.body, ["title", "summary", "link", "body", "category"]);
   console.log(body)
 
   Note.findByIdAndUpdate(id, {$set: body}).then(note => {
     res.send(note);
   }).catch(e => res.status(400).send({err: "Unable to Find Note to Update"}));
 })
+
+
 
 app.listen(PORT, () => {
   console.log(`\nApp started on port ${PORT}\n`.white.bgGreen.bold)
