@@ -175,10 +175,10 @@ app.post('/login',
     res.send({user: req.user})
   });
 
-//see who is logged in
-// app.get("/login" (req, res) => {
-//     res.send({loggedIn: res.body})
-// })
+//logout route
+app.get("/logout", (req, res) => {
+  req.logout();
+})
 
 app.listen(PORT, () => {
   console.log(`\nApp started on port ${PORT}\n`.white.bgGreen.bold)
