@@ -127,7 +127,7 @@ app.patch("/notes/:id", (req, res) => {
     return res.status(404).send({err: "ObjectID is not Valid"});
   }
 
-  var body = _.pick(req.body, ["title", "summary", "link", "body", "category"]);
+  var body = _.pick(req.body, ["title", "summary", "link", "body", "category", "categories"]);
   console.log(body)
 
   Note.findByIdAndUpdate(id, {$set: body}).then(note => {
