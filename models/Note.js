@@ -27,7 +27,18 @@ var noteSchema = new mongoose.Schema({
   },
   categories: {
     type: Array,
-    default: ["Random", "Coding", "Design", "Fitness"]
+    default: [
+      "Books",
+      "Career",
+      "Coding",
+      "Ideas",
+      "Fitness",
+      "Music",
+      "Random",
+      "School",
+      "Useful",
+      "Web Dev",
+   ]
   }
 })
 
