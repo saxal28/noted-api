@@ -2,7 +2,9 @@
 > Built With Node, Express, MongoDB. Testing in Mocha.
 
 ##GET ROUTES
-> **/home** route with author information
+> **/** route with author information
+
+>[GET /](http://pacific-everglades-32525.herokuapp.com/)
 
 > **/notes** lists all notes/note details
 
@@ -10,6 +12,7 @@
 
 ##POST ROUTES
 > **/notes** add new note
+
 > **/users** add users
 
 ##PATCH ROUTES
@@ -17,3 +20,7 @@
 
 ##DELETE ROUTES
 > **/notes/:id** delete note
+
+# You can also sort notes by Category!
+> **GET /notes/sort/:id
+
